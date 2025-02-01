@@ -4,8 +4,6 @@
  Amazon Web Services (AWS) DevOps Zero to Hero 🚀
 </h1>
 
-![image](https://github.com/user-attachments/assets/6f4905ca-e67d-497a-b477-cf76164cecb5)
-
 Welcome to the **AWS DevOps Zero to Hero** journey! This is a comprehensive **30-day guide** designed for DevOps engineers to learn AWS from scratch and dive deep into real-world projects, interview questions, and key concepts. Ready to master AWS? Let's get started! 🎉
 
 🔗 [**Complete YouTube Playlist By Abhishek Veeramalla**](https://www.youtube.com/playlist?list=PLdpzxOOAlwvLNOxX0RfndiYSt1Le9azze)
