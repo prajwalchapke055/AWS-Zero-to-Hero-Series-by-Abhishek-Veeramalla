@@ -12,6 +12,14 @@ Welcome to the **AWS DevOps Zero to Hero** journey! This is a comprehensive **30
 
 ---
 
+## Amazon Web Services Architecture
+
+<img src="https://user-images.githubusercontent.com/45159366/114321714-02c15880-9ad1-11eb-95ac-441aac6b438d.png">
+ 
+**Source: [AWS](https://aws.amazon.com/architecture/)**
+
+---
+
 ### **Day 1: Introduction to AWS 🌐**
 - Learn the basics of Cloud computing (Public & Private clouds) ☁️
 - Set up an AWS account and explore the AWS Management Console 🖥️
