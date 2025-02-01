@@ -1,5 +1,8 @@
-# AWS DevOps Zero to Hero 🚀
-![image](https://github.com/user-attachments/assets/14656187-5d51-4284-9f22-b7d4e54a04c2)
+<h1 align="center">
+ <img src="https://user-images.githubusercontent.com/45159366/114322508-7d8c7280-9ad5-11eb-807e-4dc63c9bc0e1.png">
+  <br />
+ Amazon Web Services (AWS) DevOps Zero to Hero 🚀
+</h1>
 
 ![image](https://github.com/user-attachments/assets/6f4905ca-e67d-497a-b477-cf76164cecb5)
 
