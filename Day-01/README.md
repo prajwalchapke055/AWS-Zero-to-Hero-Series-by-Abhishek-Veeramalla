@@ -154,6 +154,10 @@ If you haven't subscribed to the channel yet, please do so, and let’s get star
 
 ---
 
-![Congratulations! Thank You for Signing Up for AWS](c:\Users\HP\Downloads\AWS - Zero to Hero - Abhishek Veeramalla\Day-01\AWS - Congratulations for signing up.png)
+![Congratulations! Thank You for signing up for AWS](https://github.com/user-attachments/assets/66f455db-3680-4cbb-a075-9172fe5585a9)
 
-![Exploring AWS](c:\Users\HP\Downloads\AWS - Zero to Hero - Abhishek Veeramalla\Day-01\Exploring AWS.png)
+---
+
+![Exploring AWS (Console Home)](https://github.com/user-attachments/assets/d9efe125-bf31-4fec-8fbd-937ae238a960)
+
+---
