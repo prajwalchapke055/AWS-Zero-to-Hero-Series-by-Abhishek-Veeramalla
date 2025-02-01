@@ -1,10 +1,16 @@
 # AWS DevOps Zero to Hero 🚀
+![image](https://github.com/user-attachments/assets/14656187-5d51-4284-9f22-b7d4e54a04c2)
+
+![image](https://github.com/user-attachments/assets/6f4905ca-e67d-497a-b477-cf76164cecb5)
 
 Welcome to the **AWS DevOps Zero to Hero** journey! This is a comprehensive **30-day guide** designed for DevOps engineers to learn AWS from scratch and dive deep into real-world projects, interview questions, and key concepts. Ready to master AWS? Let's get started! 🎉
 
 🔗 [**Complete YouTube Playlist By Abhishek Veeramalla**](https://www.youtube.com/playlist?list=PLdpzxOOAlwvLNOxX0RfndiYSt1Le9azze)
 
+![Screenshot (20)](https://github.com/user-attachments/assets/be4193c7-89b5-4f4e-9b7c-6eb2c868d8e2)
+
 ---
+
 ### **Day 1: Introduction to AWS 🌐**
 - Learn the basics of Cloud computing (Public & Private clouds) ☁️
 - Set up an AWS account and explore the AWS Management Console 🖥️
@@ -111,8 +117,11 @@ Welcome to the **AWS DevOps Zero to Hero** journey! This is a comprehensive **30
 
 ### **Day 30: AWS Project with RDS 📊**
 - Implement an AWS project integrating RDS for a fully functional database-backed application 💻
+
 ---
 
 🎯 **Get ready to dive deep into AWS and DevOps practices!**  
+
 Stay tuned for daily challenges, projects, and interview questions that will help you become a pro in AWS! 🌟
+
 ---
