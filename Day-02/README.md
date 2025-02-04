@@ -1,7 +1,3 @@
-### **Welcome to Day 2 of the AWS Zero to Hero Series! 🚀**
-
----
-
 # AWS IAM (Identity and Access Management)
 
 **AWS IAM (Identity and Access Management)** is a security service from Amazon Web Services that allows you to control access to your AWS resources. IAM helps you manage users, groups, roles, and permissions for secure and organized access.
@@ -25,6 +21,25 @@
 - **Principle of Least Privilege**: IAM ensures that users are granted only the permissions they need to perform their jobs, minimizing security risks.
 - **Audit Trail**: IAM provides logs for tracking user activities and permissions changes, ensuring accountability and compliance.
 
+**IAM is an essential part of AWS security**—enabling you to secure and manage access to AWS resources efficiently and effectively.
+
 ---
 
-**IAM is an essential part of AWS security**—enabling you to secure and manage access to AWS resources efficiently and effectively.
+## - How IAM works
+
+![How IAM works](https://github.com/user-attachments/assets/d883bf2c-7a24-48e4-8da2-b88c848863a2)
+
+--- 
+
+## - Comapre IAM identities and credentials 
+
+![IAM Terms - Resource, Entity, Identity](https://github.com/user-attachments/assets/ff66f8ba-3f98-4464-ba70-cef992def1eb)
+
+
+![IAM Identity Center](https://github.com/user-attachments/assets/c404dc36-409a-424e-84a1-cef5610a6657)
+
+---
+
+### [AWS Documentation on Identity and Access Management (IAM) - User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html)
+
+---
