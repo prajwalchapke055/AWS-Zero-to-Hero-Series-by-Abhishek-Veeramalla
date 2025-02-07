@@ -1,9 +1,7 @@
-## AWS Route 53: Overview and Key Concepts
+# AWS Route 53: Overview and Key Concepts
 
-**Objective:**
+### Objective :
 To understand the role of AWS Route 53 and its functionalities, including Domain Name System (DNS) service, domain registration, hosted zones, and health checks.
-
----
 
 ### Key Concepts:
 
@@ -17,7 +15,7 @@ To understand the role of AWS Route 53 and its functionalities, including Domain
    - DNS stands for Domain Name System, which maps human-readable domain names (e.g., amazon.com) to machine-readable IP addresses.
    - DNS allows users to access services without needing to remember IP addresses.
 
-   ![\Amazon route 53](https://media.geeksforgeeks.org/wp-content/uploads/20200704210256/UntitledDiagram6.jpg)
+     ![\Amazon route 53](https://media.geeksforgeeks.org/wp-content/uploads/20200704210256/UntitledDiagram6.jpg)
 
 3. **Why Use Route 53?**
 
@@ -66,5 +64,6 @@ To understand the role of AWS Route 53 and its functionalities, including Domain
 
 2. **Learning Resources**:
    - AWS provides detailed documentation on Route 53 for further learning, including practical examples.
+   - [AWS Route 53 - Documentation ](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html)
 
 ---
