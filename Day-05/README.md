@@ -1,28 +1,35 @@
-# AWS Security using Security Groups and NACL
+# AWS Security using Security Groups and NACLs
 
 AWS (Amazon Web Services) provides multiple layers of security to protect resources and data within its cloud infrastructure. Two important components for network security in AWS are Security Groups and Network Access Control Lists (NACLs). Let's explore how each of them works:
 
-    Security Groups:
-        Security Groups act as virtual firewalls for Amazon EC2 instances (virtual servers) at the instance level. They control inbound and outbound traffic by allowing or denying specific protocols, ports, and IP addresses.
-        Each EC2 instance can be associated with one or more security groups, and each security group consists of inbound and outbound rules.
-        Inbound rules determine the traffic that is allowed to reach the EC2 instance, whereas outbound rules control the traffic leaving the instance.
-        Security Groups can be configured using IP addresses, CIDR blocks, security group IDs, or DNS names to specify the source or destination of the traffic.
-        They operate at the instance level and evaluate the rules before allowing traffic to reach the instance.
-        Security Groups are stateful, meaning that if an inbound rule allows traffic, the corresponding outbound traffic is automatically allowed, and vice versa.
-        Changes made to security group rules take effect immediately.
+
+### Security Groups:
+- Security Groups act as virtual firewalls for Amazon EC2 instances (virtual servers) at the instance level. They control inbound and outbound traffic by allowing or denying specific protocols, ports, and IP addresses.
+- Each EC2 instance can be associated with one or more security groups, and each security group consists of inbound and outbound rules.
+- Inbound rules determine the traffic that is allowed to reach the EC2 instance, whereas outbound rules control the traffic leaving the instance.
+- Security Groups can be configured using IP addresses, CIDR blocks, security group IDs, or DNS names to specify the source or destination of the traffic.
+- They operate at the instance level and evaluate the rules before allowing traffic to reach the instance.
+- Security Groups are stateful, meaning that if an inbound rule allows traffic, the corresponding outbound traffic is automatically allowed, and vice versa.
+- Changes made to security group rules take effect immediately.
+
+--- 
 
 ![AWS Security Groups (SGs)](https://docs.aws.amazon.com/images/vpc/latest/userguide/images/security-group-overview.png)
 
-    Network Access Control Lists (NACLs):
-        NACLs are an additional layer of security that operates at the subnet level. They act as stateless traffic filters for inbound and outbound traffic at the subnet boundary.
-        Unlike Security Groups, NACLs are associated with subnets, and each subnet can have only one NACL. However, multiple subnets can share the same NACL.
-        NACLs consist of a numbered list of rules (numbered in ascending order) that are evaluated in order from lowest to highest.
-        Each rule in the NACL includes a rule number, protocol, rule action (allow or deny), source or destination IP address range, port range, and ICMP (Internet Control Message Protocol) type.
-        NACL rules can be configured to allow or deny specific types of traffic based on the defined criteria.
-        They are stateless, which means that if an inbound rule allows traffic, the corresponding outbound traffic must be explicitly allowed using a separate outbound rule.
-        Changes made to NACL rules may take some time to propagate to all the resources using the associated subnet.
+---
 
-![Network Access Control Lists (NACLs)](https://docs.aws.amazon.com/images/vpc/latest/userguide/images/network-acl.png)
+### Network Access Control Lists (NACLs):
+- NACLs are an additional layer of security that operates at the subnet level. They act as stateless traffic filters for inbound and outbound traffic at the subnet boundary.
+- Unlike Security Groups, NACLs are associated with subnets, and each subnet can have only one NACL. However, multiple subnets can share the same NACL.
+- NACLs consist of a numbered list of rules (numbered in ascending order) that are evaluated in order from lowest to highest.
+- Each rule in the NACL includes a rule number, protocol, rule action (allow or deny), source or destination IP address range, port range, and ICMP (Internet Control Message Protocol) type.
+- NACL rules can be configured to allow or deny specific types of traffic based on the defined criteria.
+- They are stateless, which means that if an inbound rule allows traffic, the corresponding outbound traffic must be explicitly allowed using a separate outbound rule.
+- Changes made to NACL rules may take some time to propagate to all the resources using the associated subnet.
+
+--- 
+
+![AWS NACLs](https://github.com/user-attachments/assets/6be1aecf-9d97-4638-b4a2-842caf7c6a91)
 
 ---
 
@@ -48,6 +55,8 @@ This guide walks you through the process of creating a custom VPC in AWS, launch
      - **DNS Options**: Enable DNS hostnames and enable DNS resolution
    - Click **Create VPC** to finalize the creation of the VPC.
 
+![Create VPC workflow](https://github.com/user-attachments/assets/0103ae3c-65d0-4dd9-952c-f056c4b3ea56)
+
 ---
 
 ## 2. Launch an EC2 Instance
@@ -58,7 +67,7 @@ This guide walks you through the process of creating a custom VPC in AWS, launch
 
 2. **Launch an EC2 Instance**
    - Click on **Launch Instance** and configure the following settings:
-     - **Name**: demp-instance
+     - **Name**: demo-instance
      - **AMI**: Ubuntu 22.04
      - **Instance Type**: t2.micro
      - **Key Pair**: Select `abc.pem`
@@ -69,11 +78,11 @@ This guide walks you through the process of creating a custom VPC in AWS, launch
 3. **Configure Security Group**
    - Create a new security group or select an existing one. Ensure that it allows inbound traffic for the required ports.
 4. **Configure Storage**
-
    - Set the storage size to **8 GiB**.
-
 5. **Launch the Instance**
    - Once all the configurations are complete, click **Launch** to start the EC2 instance.
+
+![Create an EC2 instance](https://github.com/user-attachments/assets/f12262b1-3883-4adf-ad0c-80f66a44610a)
 
 ---
 
@@ -81,12 +90,11 @@ This guide walks you through the process of creating a custom VPC in AWS, launch
 
 1. **Access the Instance via SSH**
 
-   - Open a terminal on your local machine (e.g., PowerShell, iTerm, MobaXterm, or PuTTY) and run the following command:
+   - Open a terminal on your local machine (e.g., PowerShell, MobaXterm, or PuTTY) and run the following command:
 
    ```bash
    ssh -i abc.pem ubuntu@<public-ip-of-your-running-instance>
    ```
-
    - Replace `<public-ip-of-your-running-instance>` with the public IP of the running EC2 instance.
 
 2. **Update System and Install Python**
@@ -110,6 +118,9 @@ This guide walks you through the process of creating a custom VPC in AWS, launch
 
 4. **Test the HTTP Server in the Browser**
    - Open a browser and navigate to `http://<public-ip>:8000`. You should see the HTTP server's default directory listing.
+
+![Browse search](https://github.com/user-attachments/assets/bdc98728-76b6-41e3-99a0-f70664dc8796)
+
 
 ---
 
@@ -156,6 +167,8 @@ This guide walks you through the process of creating a custom VPC in AWS, launch
 3. **Test the Impact of ACL Changes**
    - Refresh the browser again and notice how the output is impacted based on the newly configured Network ACLs.
 
+![8b709fc3-74f4-4bab-afca-6cd25b7e2b36](https://github.com/user-attachments/assets/1a86fe8c-f24e-4b77-b705-f33edbf421ca)
+
 ---
 
 ## Conclusion
@@ -163,6 +176,7 @@ This guide walks you through the process of creating a custom VPC in AWS, launch
 You have successfully created a custom VPC, launched an EC2 instance, configured a Python HTTP server, adjusted security group settings, and applied Network ACL rules in AWS. This setup is helpful for controlling access to your EC2 instances and testing different network security configurations.
 
 ---
+## Architecture Diagram on AWS Security Group (SG) and Network Access Control Lists (NACL)
 
 ![Screenshot 2023-06-29 at 12 14 32 AM](https://github.com/iam-veeramalla/aws-devops-zero-to-hero/assets/43399466/30bbc9e8-6502-438b-8adf-ece8b81edce9)
 
