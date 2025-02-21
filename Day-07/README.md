@@ -1,6 +1,6 @@
-# VPC with public-private subnet in production 
-## Services used 
-### -VPC, EC2, Automatic Scaling Group, Launch Templates, Security Group, Linux, Load Balancer.
+# Project on VPC with Public - Private Subnet in Production 
+
+## Services used - VPC, EC2, Automatic Scaling Group, Launch Templates, Security Group, Linux, Load Balancer.
 
 ## Description
 
@@ -16,9 +16,12 @@
 #### - The servers run in the private subnets, are launched and terminated by using an Auto Scaling group, and receive traffic from the Load Balancer.
 #### - The servers can connect to the internet by using the NAT gateway. 
 
-
+---
 
 ![1](https://github.com/TheMannu/project-AWS-VPC-with-public-private-subnet-/assets/84488161/a3b48941-a7d4-4536-927b-e53e9be642cf)
+
+---
+
 ## Lets start with creating a VPC (Virtual Private Cloud).
 ### Required Configuration for VPC 
 -	Select option - VPC and more 
@@ -30,12 +33,15 @@
 -	VPC  endpoints  -  None (As Database is not required – 2 Tier Application)
 
 ![Screenshot (248)](https://github.com/TheMannu/project-AWS-VPC-with-public-private-subnet-/assets/84488161/f57da3d5-39ad-444c-82ab-d2a1bbbb4892)
+
 ![Screenshot (251)](https://github.com/TheMannu/project-AWS-VPC-with-public-private-subnet-/assets/84488161/0a143e7c-832a-4205-a2e2-fa5a0a6730df)
+
 ![Screenshot (252)](https://github.com/TheMannu/project-AWS-VPC-with-public-private-subnet-/assets/84488161/e44671a8-7eab-4903-a453-a8ceeb895d8d)
 
 ## Hit Create VPC And wait for this Outcome 
 
 ![Screenshot (253)](https://github.com/TheMannu/project-AWS-VPC-with-public-private-subnet-/assets/84488161/cb2fecd0-859d-40b2-bbf6-127de740abe8)
+
 ![Screenshot (254)](https://github.com/TheMannu/project-AWS-VPC-with-public-private-subnet-/assets/84488161/92ddedb9-e2be-4647-860e-d55c0d4f09a7)
 
 ## Now we will Create Auto Scaling Group and for creating Auto Scaling Group we need to create Launch template as Launch template is used as reference for creation of instances in future during downtime 
@@ -67,7 +73,9 @@
        -   security rule 1 = Type ssh, Port 22, Source Type  anywhere  (for SSH login)
        -   security rule 2 = Type Custom TCP, Port 8000, Source Type  anywhere  
 - Hit Create
+
 ![Screenshot (259)](https://github.com/TheMannu/project-AWS-VPC-with-public-private-subnet-/assets/84488161/3df33470-cbf1-486e-b4bf-519016473fe4)
+
 ![Screenshot (260)](https://github.com/TheMannu/project-AWS-VPC-with-public-private-subnet-/assets/84488161/c2063573-e280-4555-9321-0f96ca46e2c8)
 
 ### After creation of Launch Template we will create Auto Scaling Group
@@ -78,6 +86,7 @@ Step 1 -
 
 
 ![Screenshot (261)](https://github.com/TheMannu/project-AWS-VPC-with-public-private-subnet-/assets/84488161/a35cfd72-487d-4977-a306-c1476b37fd2e)
+
 ![Screenshot (262)](https://github.com/TheMannu/project-AWS-VPC-with-public-private-subnet-/assets/84488161/97779458-7ad8-4e6a-a347-0110ac2194bd)
 
 Step 2 – 
@@ -103,6 +112,7 @@ Step 4
 -	Hit next
 
 ![Screenshot (265)](https://github.com/TheMannu/project-AWS-VPC-with-public-private-subnet-/assets/84488161/e7dc45ba-190c-4bc7-bb52-3adcdcfb43d8)
+
 ![Screenshot (266)](https://github.com/TheMannu/project-AWS-VPC-with-public-private-subnet-/assets/84488161/202310b6-7968-4e64-a563-98def333da31)
 
 Step 5 
@@ -168,8 +178,6 @@ Check if the pem file is present or not by using ( ls )command
 
  
  #### My AWS PROJECT to demonstrate apps in private subnet 
-
-
 
 -	then run the python command at port 8000
 
