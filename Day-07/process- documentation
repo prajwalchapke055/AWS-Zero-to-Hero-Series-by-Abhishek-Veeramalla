@@ -1,0 +1,155 @@
+# AWS Project : Setup VPC with Public - Private Subnet in Production
+
+## Services used - EC2, VPC, SG, LB
+
+This project demonstrates how to create a VPC that can be used for server in a production environment
+To improve resiliency, Deployed the server in two availability Zones, by using an Auto Scaling group and an Application Load Balancer. For additional security, deployed the server in private subnet. The servers receive request through the load balancer. The server can connect o the internet by using a NAT gateway. To improve resiliency, deployed the gateway in both Availability Zones.
+
+## Overview
+
+The VPC has public subnets and private subnets in two Availability Zones.
+Each public subnet contains a NAT gateway and a load balancer node.
+The servers run in the private subnets, are launched and terminated by using an
+Auto Scaling group, and receive traffic from the load balancer.
+The servers can connect to the internet by using the NAT gateway.
+Lets start with creating a VPC (Virtual Private Cloud).
+Required Configuration for VPC
+
+- Select option - VPC and more
+- Name the VPC
+- Number of Availability Zones - 2 (for High Availability)
+- Number of Public Subnet - 2
+- Number of Private Subnet - 2
+- Number of NAT Gate - 1 per AZ (For masking of application IP addresses)
+- VPC endpoints - None (As Database is not required – 2 Tier Application)
+  Hit Create VPC And wait for this Outcome
+
+Now we will Create Auto Scaling Group and for creating Auto Scaling Group we need to create Launch template as Launch template is used as reference for creation of instances in future during downtime
+
+- Search for EC2
+- Search for Auto Scaling Group
+- Click on Create Launch Template
+- Name the Template
+- Provide Description
+- Choose Operating System as Ubuntu (For Linux based applications)
+- Choose Instance Type (As per Requirements) I ma using t2 micro (free tier applicable)
+- Key Pair (For Login Authentication)
+- Click Network Settings (For Creating Security Group with Inbound Rules) - Select create security group - Name the security group - Provide description - select VPC ( select VPC just created ) - security rule 1 = Type ssh, Port 22, Source Type anywhere  
+   - security rule 2 = Type Custom TCP, Port 8000, Source Type anywhere  
+  Hit create
+
+After creation of Launch Tamplate we will create Auto Scaling Group
+Step 1 -
+
+- Name the auto scaling group
+- Select the launch template we have just created
+- Hit next
+  Step 2 –
+- Choose VPC last created
+- Choose the private subnet of both the AZ ( As application needs to be in private )
+- Hit next
+  Step 3 –
+- I have not attached any load balancer at Auto Scaling Group private subnet for applications
+- Health check is Okay
+- Hit next
+  Step 4
+- Desired capacity – 2
+- Minimum capacity – 1
+- Maximum capacity – 4 (if traffic increases for applications it can expand up to 4 machines)
+- Scaling policies – None
+- Hit next
+  Step 5
+- Here we can use SNS for notification about machine if added or terminated (I have not used SNS in this project)
+- Hit next
+  Step 6
+- Here we can use tags for using this Auto Scaling Group in future (I am using tags in this project )
+- Hit next
+  Step 7
+- Review all the configurations of tha Auto Scaling Group
+- Hit Create Auto Scaling Group
+
+Now check EC2 instance if Auto Scaling Group have created 2 instances in the selected subnet at step 2 of Auto Scaling Group Creation
+After checking the subnets, we will install the applications in both the private instances
+
+Bastion Host
+
+For installing applications, we need to connect the private application server. To connect the private server, we need to create Bastion Host ( As public IP is not present to SSH the private application server )
+
+For creating Bastion Host, we will Create an EC2 instance
+
+- Name instance Bastion Host
+- Select the image ubuntu (For Linux based applications )
+- Instance type – t2 micro
+- Select Key pair to ssh connect the Bastion Host
+- Network setting - select the same VPC as created above
+- Add security group which allow SSH connect to Bastion Host
+- Enable assign public IP
+- Hit Launch Instance
+
+Copy the key pair (pem file) from local computer to the bastion server using the SCP command
+
+- scp -i /path/key-pair-name.pem /home/ubuntu/key.pem ubuntu@PRIVATE IP ADDRESH:/home/ubuntu
+
+Connect to the Bastion Host through ubuntu terminal using SSH command
+
+- ssh -i /path/key-pair-name.pem instance-user-name@instance-public-ip-address
+
+After establishing the connection with Bastion Host, we will connect to the private application server  
+Check if the pem file is present or not by using ( ls )command
+
+Connect to the private application server through Bastion Host using SSH command
+
+- ssh -i /path/key-pair-name.pem instance-user-name@instance-private-ip-address
+
+Install the application
+
+- Make a simple vim file ( vim index.html )and write this simple html code
+<! DOCTYPE html>
+<html>
+<body>
+<h1>
+ My First AWS PROJECT to demonstrate apps in private subnet 
+</h1>
+</body>
+</html>
+
+- then run the python command at port 8000
+  – python3 -m http.server 8000
+
+Create Application Load Balancer which works with HTTP & HTTTPS - ( Level 7 Load Balancer )
+
+- Select application load balancer
+- Name the load balancer
+- Select – Internet facing
+- Select IPV4
+- Select VPC which is created above
+- Select both the Availability Zones only with public subnet
+- Select Security Group with Port 80 from anywhere
+
+For Load Balancer - Create target Group
+
+- Select instance
+- Name the target group
+- Select HTTP port 8000
+- Hit next
+
+Select the instance as target for load balancer that were created above by Auto Scaling Group
+Port for selected instance – 8000
+Click – Include as pending below
+
+- Hit Create Target Group
+
+After creation of the target group
+Add this target group to the Load Balancer
+
+- Select protocol – HTTP
+- Open port – 80
+- Select Default action – VPC created above
+
+Hit create Load Balancer
+
+Now Go to the Load Balancer – If its showing error for port 80 then change the security group and allow HTTP ,TCP,80,Anywhere
+
+Now Copy the DNS name link and paste on your Browser to Look your HTML page
+
+My AWS PROJECT to demonstrate apps in private subnet
